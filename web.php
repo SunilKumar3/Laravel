@@ -13,7 +13,9 @@
 
 
 Route::get('/','PagesController@index');
-Route::get('/about','PagesController@about');
+
+
+Route::get('/middleware', 'PagesController@middleware');
 
 Route::get('blade','PagesController@blade'); 
 
@@ -52,3 +54,12 @@ Route::get('users', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => ['web']], function() {
+	Route::get('/contactblog', 'PagesController@contactblog');
+	Route::get('/about','PagesController@about');
+	Route::get('/welcomeblog','PagesController@welcomeblog');
+	Route::resource('posts','PostController');
+
+
+});

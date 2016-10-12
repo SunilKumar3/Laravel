@@ -1,5 +1,13 @@
 @extends('main')
 
+@section('title', '| Homepage')
+
+
+
+@section('stylesheets')
+  <link rel="stylesheet" type="text/css" href="styles.css">
+@endsection
+
 @section('content')
     <div class="row">
     <div class="col-md-12">
@@ -11,31 +19,21 @@
 
 <div class="row">
 <div class ="col-md-8">
+
+@foreach($posts as $post)
+
 <div class ="post">
-<h3>Post Title</h3>
-<p>Lorem ipsum dolor sit amet, justo metus morbi a est blandit urna, tortor integer rhoncus sed sit tortor, lectus ornare nullam ac, tortor metus amet ut nibh. Aliquam a sit mollis amet lorem, porta enim wisi nibh, vehicula odio ut proin. At eu, massa aliquam laoreet, neque amet per ullamcorper maecenas elit suspendisse.</p>
+<h3>{{ $post-> title}}</h3>
+<p>{{ substr($post->body, 0, 300)}} {{ strlen($post->body) > 300 ? "..." : " "}}</p>
 <a href="#" class="btn btn-primary">Read more</a>
 </div>
 
 <hr>
 
-
-<div class ="post">
-<h3>Post Title</h3>
-<p>Lorem ipsum dolor sit amet, justo metus morbi a est blandit urna, tortor integer rhoncus sed sit tortor, lectus ornare nullam ac, tortor metus amet ut nibh. Aliquam a sit mollis amet lorem, porta enim wisi nibh, vehicula odio ut proin. At eu, massa aliquam laoreet, neque amet per ullamcorper maecenas elit suspendisse.</p>
-<a href="#" class="btn btn-primary">Read more</a>
-</div>
-
-<hr>
+@endforeach
 
 
-<div class ="post">
-<h3>Post Title</h3>
-<p>Lorem ipsum dolor sit amet, justo metus morbi a est blandit urna, tortor integer rhoncus sed sit tortor, lectus ornare nullam ac, tortor metus amet ut nibh. Aliquam a sit mollis amet lorem, porta enim wisi nibh, vehicula odio ut proin. At eu, massa aliquam laoreet, neque amet per ullamcorper maecenas elit suspendisse.</p>
-<a href="#" class="btn btn-primary">Read more</a>
-</div>
 
-<hr>
 
 </div>
 <div class = "col-md-3 col-md-offset=1">
@@ -47,4 +45,8 @@
 
 @endsection
 
-    
+@section('scripts')
+<script>
+confirm ('I loaded up som JS');
+</script>
+@endsection
