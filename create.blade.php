@@ -1,6 +1,6 @@
-@extends('main')
+@extends('master')
 
-@section('title', '| Create New Post')
+@section('title', '| Create New Employee')
 
 @section('stylesheets')
 
@@ -10,23 +10,58 @@
 
 @section('content')
 
-<div class = "row">
-<div class="col-md-8 col-md-offset-2">
-<h1>Create New Post</h1>
-<hr>
+<div class="row">
+	<div class="col-md-4 col-md-offset-2">
+	<h1>Create New Employee</h1>
 
-{!! Form::open(['route' => 'posts.store','data-parsley-validate' => '']) !!}
-    {{ Form::label('title', 'Title')}}
-    {{ Form::text('title', null, array('class' => 'form-control', 'required' => '' , 'maxlength' => '255'))}}
+	<hr>
 
-    {{Form::label('body', "Post Body:")}}
-    {{Form::textarea('body',null, array('class' => 'form-control','required' => ''))}}
+	{!! Form::open(array('route' => 'employeepost.store')) !!}
 
-    {{Form::submit('Create Post', array('class' => 'btn btn-success btn-block', 'style' => 'margin-top: 20px;'))}}
+	{{ Form::label('name','Name')}}
+	{{ Form::text('name', null, array('class' => 'form-control'))}}
 
-{!! Form::close() !!}
+	{{ Form::label('username','Username')}}
+	{{ Form::text('username', null, array('class' => 'form-control'))}}
+	<br>
 
-</div>
+	{{ Form::label('password','Password')}}
+	{{ Form::password('password', null, array('class' => 'form-control'))}}
+	<br>
+
+	{{ Form::label('address','Address')}}
+	{{ Form::textarea('address', null, array('class' => 'form-control'))}}
+
+	{{ Form::label('mobile','Mobile')}}
+	{{ Form::text('mobile', null, array('class' => 'form-control'))}}
+
+	{{ Form::label('email','Email')}}
+	{{ Form::text('email', null, array('class' => 'form-control'))}}
+	<br>
+
+	{{ Form::label('dept_name','Dept_name')}}
+
+	
+
+	<?php echo Form::select('dept_name', array(
+	'Default' => array('' => ''),
+    'Hr' => array('Human Resource' => 'Human Resource'),
+    'Ad' => array('Admin' => 'Admin'),
+)); ?>
+
+	<br> 
+
+	
+	{{ Form::label('role','Role')}}
+	{{ Form::text('role', null, array('class' => 'form-control'))}}
+
+
+	{{ Form::submit('Create New Employee', array('class' =>'btn btn-success btn-lg btn-block','style' => 'margin-top: 20px;'))}}
+
+	{!! Form::close() !!}
+
+
+	</div>
 </div>
 
 @endsection

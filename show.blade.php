@@ -1,50 +1,109 @@
-@extends('main')
-
-@section('title','| View Post')
-
+@extends('master')
 @section('content')
+<style>
+table{
+	width:500px;
+}
+td{
+	cellpadding:20px;
+}
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 col-md-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">Employees
+						<a href="{{ url('/employeepost/create') }}" style="float:right;">Create New</a>
+				</div>
 
-<div class="row">
-	<div class="col-md-12">
-
-		<h1>{{ $post->title}}</h1>
-
-			<p class="lead">{{$post -> body}}</p>
-
-			<div class = "col-md-4">
-				<div class = "well">
-					<dl class = "dl-horizontal">
-						<dt>Create At:</dt>
-						<dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
-						
-					</dl>
-
-					<dl class = "dl-horizontal">
-						<dt>Last Updated:</dt>
-						<dd>{{ date('M j, Y h:ia', strtotime($post->updated_at))}}</dd>
-							
-					</dl>
-
-					<hr>
-					
-					<div class="row">
-						<div class = "col-sm-6">
-						{!! Html::linkRoute('posts.edit','Edit', array($post->id), array('class' => 'btn btn-primary btn block')) !!}
-							
-						
+				<div class="panel-body">
+				<table>	
 				
-						</div>
-					<div class = "col-sm-6">
-						{!! Form::open(['route' => ['posts.destroy', $post->id], 'method' =>'DELETE']) !!}
+				<th>Emp#</th>	
+				
+				<th>Emp.Name</th>
 
-						{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
+				<th>Username</th>
 
-						{!! Form::close() !!}
-					</div>
+				<th>password</th>
 
+				<th> address</th>
+
+				<th> mobile</th>
+
+				<th> Email</th>
+
+				<th> dept_name</th>
+
+				<th> role </th>
+
+				<th> </th>
+				<th> </th>
+				<?php
+
+					foreach ($empps as $key => $value) {
+						//print_r($value);
+						# code...
+						?>
+							<tr>
+							        <td>
+									<?php echo $value->id; ?>
+									</td>
+									
+									<td>
+									<?php echo $value->name; ?>
+									</td>
+
+									<td>
+									<?php echo $value->username; ?>
+									</td>
+
+									<td>
+									<?php echo $value->password; ?>
+									</td>
+
+
+									<td>
+									<?php echo $value->address; ?>
+									</td>
+
+									<td>
+									<?php echo $value->mobile; ?>
+									</td>
+
+									<td>
+									<?php echo $value->email; ?>
+									</td>
+
+									<td>
+									<?php echo $value->dept_name; ?>
+									</td>
+
+									<td>
+									<?php echo $value->role; ?>
+									</td>
+
+									<td> 
+									
+									<a href="{{ url('/editempp/') }}/<?=$value->id?>">Edit</a>
+									
+									</td>
+
+									<td>
+									
+									<a  href="{{ url('/deleteemp/') }}/<?=$value->id?>" >Delete</a>
+									
+										
+									</td>
+							</tr>
+						<?php
+					}
+				?>
+				</table>	
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-</div>
-
 @endsection
+
